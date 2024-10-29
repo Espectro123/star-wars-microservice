@@ -1,4 +1,4 @@
-This microservice fetches Star Wars character data from the SWAPI, sorts the characters by name, and provides a /sorted-people endpoint to access the sorted data. 
+This microservice get Star Wars character data from the SWAPI, sorts the characters by name, and provides a /sorted-people endpoint to access the sorted data. 
 
 To launch it, install the dependencies using pip install -r requirements.txt and run python src/infrastructure/api/server.py
 
