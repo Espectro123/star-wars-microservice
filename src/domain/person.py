@@ -2,6 +2,7 @@ import logging
 
 logger = logging.getLogger('star_wars_logger')
 
+
 class Person:
     """
     Dynamic Person class definition.

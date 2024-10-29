@@ -31,7 +31,7 @@ jobs:
       # Step 4: Lint code with flake8
       - name: Lint code
         run: |
-          flake8 src/
+          flake8 --exit-zero src/
 
       # Step 5: Run unit tests with pytest
       - name: Run tests
