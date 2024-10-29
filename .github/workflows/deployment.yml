@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [ main ]
 
+env:
+  IMAGE_NAME: star-wars-microservice
+  IMAGE_TAG: latest
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -49,14 +53,21 @@ jobs:
           context: .
           file: ./Dockerfile
           push: false
-          tags: star-wars-microservice:latest
+          load: true
+          tags: ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
 
       # Step 8: Run the Docker container
       - name: Run Docker container
         run: |
-          docker run -d --name star-wars-microservice -p 5000:5000 star-wars-microservice:latest
+          docker run -d --name ${{ env.IMAGE_NAME }} -p 5000:5000 ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
 
       # Step 9: Test the running container
       - name: Test Docker container
         run: |
           curl http://localhost:5000/sorted-people
+      
+      # Step 10: Stop and remove the docker container
+      - name: Stop and remove Docker container
+        run: |
+          docker stop ${{ env.IMAGE_NAME }}
+          docker rm ${{ env.IMAGE_NAME }}
