@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: star-wars-microservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: star-wars-microservice
+  template:
+    metadata:
+      labels:
+        app: star-wars-microservice
+    spec:
+      containers:
+      - name: star-wars-microservice-container
+        image: star-wars-microservice:latest
+        ports:
+        - containerPort: 5000
