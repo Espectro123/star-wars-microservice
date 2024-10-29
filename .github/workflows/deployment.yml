@@ -1,0 +1,62 @@
+name: Star Wars Microservice Deployment
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Python environment
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install flake8 pytest
+
+      # Step 4: Lint code with flake8
+      - name: Lint code
+        run: |
+          flake8 src/
+
+      # Step 5: Run unit tests with pytest
+      - name: Run tests
+        run: |
+          python3 -m pytest tests/
+
+      # Step 6: Set up Docker Buildx
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      # Step 7: Build and push Docker image
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: ./Dockerfile
+          push: false
+          tags: star-wars-microservice:latest
+
+      # Step 8: Run the Docker container
+      - name: Run Docker container
+        run: |
+          docker run -d --name star-wars-microservice -p 5000:5000 star-wars-microservice:latest
+
+      # Step 9: Test the running container
+      - name: Test Docker container
+        run: |
+          curl http://localhost:5000/sorted-people

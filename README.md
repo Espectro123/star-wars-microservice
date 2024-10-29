@@ -20,10 +20,17 @@ Go to http://127.0.0.1:5000/sorted-people to access the endpoint. You should see
 ## Deploy the service to a kubernetes cluster (minikube)
 ```
 minikube start
+```
+
+```
 docker build -t star-wars-microservice .
 kubectl apply -f k8s/star_wars_deployment.yaml
 kubectl apply -f k8s/star_wars_service.yaml
 minikube service star-wars-microservice-service
+```
+
+```
+minikube stop
 ```
 
 Click on the link shown on the URL column and add /sorted-people at the end of the route in the browser
