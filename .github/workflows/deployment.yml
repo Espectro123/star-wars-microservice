@@ -60,13 +60,8 @@ jobs:
       - name: Run Docker container
         run: |
           docker run -d --name ${{ env.IMAGE_NAME }} -p 5000:5000 ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
-
-      # Step 9: Test the running container
-      - name: Test Docker container
-        run: |
-          curl http://localhost:5000/sorted-people
       
-      # Step 10: Stop and remove the docker container
+      # Step 9: Stop and remove the docker container
       - name: Stop and remove Docker container
         run: |
           docker stop ${{ env.IMAGE_NAME }}

@@ -1,5 +1,5 @@
 import logging
-from src.use_cases.get_and_sort_people import fetch_and_sort_people
+from src.use_cases.fetch_and_sort_people import fetch_and_sort_people
 from src.interfaces.serializers.person_serializer import PersonSerializer
 from src.interfaces.repositories.swapi_repository import SWAPIRepository
 
