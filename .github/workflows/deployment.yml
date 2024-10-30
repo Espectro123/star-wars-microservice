@@ -40,7 +40,7 @@ jobs:
       # Step 5: Run unit tests with pytest
       - name: Run tests
         run: |
-          python3 -m pytest tests/
+          python3 -m pytest tests/unit_tests/
 
       # Step 6: Set up Docker Buildx
       - name: Set up Docker Buildx
