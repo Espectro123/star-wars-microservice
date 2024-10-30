@@ -10,16 +10,21 @@ The microservice follows the clean architecture guidelines.
 ![Clean Architecture](clean_architecture_diagram.webp)
 
 Here you can see a detailed explaination of each folder and how it aligns with a specific layer of the architecture.
-
-domain: Core business entities and rules (Entities Layer).
-use_cases: Application-specific business logic (Use Cases Layer).
-interfaces:  Adapters for communication between layers (Interface Adapters Layer).
----> controllers: Handles HTTP requests.
----> repositories: Abstracts data access.
----> serializers: Transforms data for presentation.
-infrastructure: External systems and frameworks (Frameworks and Drivers Layer).
----> api: Web server setup and routes.
----> external_services: Communication with external APIs.
+<ul>
+<li>domain: Core business entities and rules (Entities Layer).
+<li>use_cases: Application-specific business logic (Use Cases Layer).
+<li>interfaces:  Adapters for communication between layers (Interface Adapters Layer).
+    <ul>
+        <li>controllers: Handles HTTP requests.
+        <li>repositories: Abstracts data access.
+        <li>serializers: Transforms data for presentation.
+    </ul>
+<li>infrastructure: External systems and frameworks (Frameworks and Drivers Layer).
+    <ul>
+        <li>api: Web server setup and routes.
+        <li>external_services: Communication with external APIs.
+    </ul>
+</ul>
 
 ## Runing the microservice localy
 ```
